@@ -1,2 +1,2 @@
-# Discussion-Froum
-Discussion Froum using HTML , PHP and  Bootstarp
+# Discussion-Forum
+Discussion Forum using HTML , PHP and  Bootstarp

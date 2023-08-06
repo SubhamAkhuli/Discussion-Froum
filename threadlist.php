@@ -30,7 +30,7 @@
     }
     
     ?>
-
+<!-- thead insert -->
     <?php
     $showAlert = false;
     $method = $_SERVER['REQUEST_METHOD'];
@@ -48,7 +48,10 @@
         $sno = $_POST['sno']; 
         $sql = "INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ( '$th_title', '$th_desc', '$id', '$sno', current_timestamp())";
         $result = mysqli_query($conn, $sql);
-        $showAlert = true;
+        if ($result)
+        {
+            $showAlert = true;
+        }
         if($showAlert){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success!</strong> Your thread has been added! Please wait for community to respond
@@ -70,14 +73,16 @@
             <p><b>Note: </b><br>This is a peer to peer forum. No Spam / Advertising / Self-promote in the forums is not allowed. Do not
                 post copyright-infringing material. Do not post “offensive” posts, links or images. Do not cross post
                 questions. Remain respectful of other members at all times.</p>
-            <a class="btn btn-success btn-lg" href="https://www.wikipedia.org/" target="_blank" role="button">Learn more</a>
+            <?php echo'<a class="btn btn-success btn-lg" href="https://en.wikipedia.org/wiki/'.$catname.'";'?> target="_blank" role="button">Learn more</a>
         </div>
     </div>
 
+    <!-- to submit the theard  -->
     <?php 
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){ 
     echo '<div class="container">
             <h1 class="py-2">Start a Discussion</h1> 
+            
             <form action="'. $_SERVER["REQUEST_URI"] . '" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Problem Title</label>

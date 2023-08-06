@@ -29,7 +29,8 @@
         <?php  
         $noresults = true;
         $query = $_GET["search"];
-        $sql = "select * from threads where match (thread_title, thread_desc) against ('$query')"; 
+        // $sql = "select * from threads where match (thread_title, thread_desc) against ('$query')"; 
+        $sql = "select * from threads where thread_title ='$query' or thread_title like '$query%' or thread_title like '$query%' or thread_title like '%$query%' or thread_desc like '$query%' or thread_desc like '%$query%' or thread_desc like '%$query' or thread_desc= '$query'";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)){
             $title = $row['thread_title'];
